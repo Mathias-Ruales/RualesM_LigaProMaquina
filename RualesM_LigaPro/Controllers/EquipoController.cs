@@ -15,16 +15,9 @@ namespace RualesM_LigaPro.Controllers
 
         public IActionResult Edit(int Id)
         {
-            Equipo ldu = new Equipo
-            {
-                Id = 1,
-                Nombre = "LDU",
-                partidosJugados = 10,
-                partidosGanados = 10,
-                partidosPerdidos = 0,
-                partidosEmpatados = 0
-            };
-            return View(ldu);
+            EquipoRepo repository = new EquipoRepo();
+            var equipo = repository.DevolverInfoEquipo(Id);
+            return View(equipo);        
         }
     }
 }

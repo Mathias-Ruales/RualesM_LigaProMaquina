@@ -9,6 +9,6 @@ namespace RualesM_LigaPro.Interfaces
         bool ActualizarEquipo();
         bool EliminarEquipo();
 
-        Equipo DevolverInfoEquipo();
+        public Equipo DevolverInfoEquipo(int Id);
     }
 }

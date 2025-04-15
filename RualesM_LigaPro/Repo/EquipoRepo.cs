@@ -15,8 +15,11 @@ namespace RualesM_LigaPro.Repo
             throw new NotImplementedException();
         }
 
-        public Equipo DevolverInfoEquipo()
+        public Equipo DevolverInfoEquipo(int Id)
         {
+            var equipos = DevuelveListadoEquipos();
+            var equipo = equipos.Where(item => item.Id == Id).First();
+            return equipo;
             throw new NotImplementedException();
         }
 
