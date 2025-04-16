@@ -13,7 +13,11 @@ namespace RualesM_LigaPro.Models
         public string Nombre { get; set; }
         [Range(0, 100)]
         [DisplayName("Partidos Jugados: ")]
-        public int partidosJugados { get; set; }
+        public int partidosJugados { get
+            {
+                return partidosGanados + partidosPerdidos + partidosEmpatados;
+            }
+        }
         [Range(0, 100)]
         [DisplayName("Partidos Ganados: ")]
         public int partidosGanados { get; set; }

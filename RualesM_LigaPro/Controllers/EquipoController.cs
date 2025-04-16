@@ -1,23 +1,35 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using RualesM_LigaPro.Models;
-using RualesM_LigaPro.Repo;
+﻿    using Microsoft.AspNetCore.Mvc;
+    using RualesM_LigaPro.Models;
+    using RualesM_LigaPro.Repo;
 
-namespace RualesM_LigaPro.Controllers
-{
-    public class EquipoController : Controller
+    namespace RualesM_LigaPro.Controllers
     {
-        public IActionResult ListaEquipos()
+        public class EquipoController : Controller
+       
+
         {
-            EquipoRepo equipoRepo = new EquipoRepo();
-            var equipos = equipoRepo.DevuelveListadoEquipos();
-            return View(equipos);
+            EquipoRepo repo = new EquipoRepo();
+             public IActionResult ListaEquipos()
+            {
+                var equipos = repo.DevuelveListadoEquipos();
+                return View(equipos);
+            }
+
+            public IActionResult Edit(int Id)
+            {
+                var equipo = repo.DevolverInfoEquipo(Id);
+                return View(equipo);        
+            }
+
+        
+        
+        [HttpPost]
+        public IActionResult Edit(Equipo equipo)
+        {
+                bool guardarCambios = repo.ActualizarEquipo(equipo);
+                return RedirectToAction("ListaEquipos");
+
         }
 
-        public IActionResult Edit(int Id)
-        {
-            EquipoRepo repository = new EquipoRepo();
-            var equipo = repository.DevolverInfoEquipo(Id);
-            return View(equipo);        
-        }
     }
 }

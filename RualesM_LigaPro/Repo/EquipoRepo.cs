@@ -5,51 +5,63 @@ namespace RualesM_LigaPro.Repo
 {
     public class EquipoRepo : iEquipoRepo
     {
-        public bool ActualizarEquipo()
+
+        public List<Equipo> Equipos;
+        public EquipoRepo()
         {
-            throw new NotImplementedException();
+            Equipos = new List<Equipo>();
+            Equipo ldu = new Equipo
+            {
+                Id = 1,
+                Nombre = "LDU",
+                partidosGanados = 10,
+                partidosPerdidos = 0,
+                partidosEmpatados = 5
+            };
+            Equipos.Add(ldu);
+
+            Equipo bsc = new Equipo
+            {
+                Id = 2,
+                Nombre = "BSC",
+                partidosGanados = 1,
+                partidosPerdidos = 8,
+                partidosEmpatados = 1
+            };
+            Equipos.Add(bsc);        
+        
         }
 
-        public bool CrearEquipo()
+        public bool ActualizarEquipo(Equipo equipo)
         {
+            if (equipo != null)
+            {
+                var equipoActualizado = Equipos.Where(item => item.Id == equipo.Id).First();
+                equipoActualizado.partidosGanados = equipo.partidosGanados;
+                equipoActualizado.partidosPerdidos = equipo.partidosPerdidos;
+                equipoActualizado.partidosEmpatados = equipo.partidosEmpatados;
+                return true;
+            }
+            return false;
+        }
+
+        public bool CrearEquipo(Equipo equipo)
+        {
+
             throw new NotImplementedException();
         }
 
         public Equipo DevolverInfoEquipo(int Id)
         {
-            var equipos = DevuelveListadoEquipos();
-            var equipo = equipos.Where(item => item.Id == Id).First();
+            var equipo = Equipos.Where(item => item.Id == Id).First();
             return equipo;
-            throw new NotImplementedException();
         }
 
         public List<Equipo> DevuelveListadoEquipos()
         {
-                List<Equipo> equipos = new List<Equipo>();
-                Equipo ldu = new Equipo
-                {
-                    Id = 1,
-                    Nombre = "LDU",
-                    partidosJugados = 10,
-                    partidosGanados = 10,
-                    partidosPerdidos = 0,
-                    partidosEmpatados = 0
-                };
-                equipos.Add(ldu);
+            return Equipos.OrderByDescending(item => item.Puntos).ToList();
 
-                Equipo bsc = new Equipo
-                {
-                    Id = 2,
-                    Nombre = "BSC",
-                    partidosJugados = 10,
-                    partidosGanados = 1,
-                    partidosPerdidos = 8,
-                    partidosEmpatados = 1
-                };
-                equipos.Add(bsc);
-
-                return equipos;
-            }
+        }
 
         public bool EliminarEquipo()
         {
