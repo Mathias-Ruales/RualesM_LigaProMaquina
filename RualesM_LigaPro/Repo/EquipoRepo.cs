@@ -6,31 +6,26 @@ namespace RualesM_LigaPro.Repo
     public class EquipoRepo : iEquipoRepo
     {
 
-        public List<Equipo> Equipos;
-        public EquipoRepo()
+        public static List<Equipo> Equipos = new List<Equipo>
         {
-            Equipos = new List<Equipo>();
-            Equipo ldu = new Equipo
+             new Equipo
             {
                 Id = 1,
                 Nombre = "LDU",
                 partidosGanados = 10,
                 partidosPerdidos = 0,
                 partidosEmpatados = 5
-            };
-            Equipos.Add(ldu);
-
-            Equipo bsc = new Equipo
+            },
+             new Equipo
             {
                 Id = 2,
                 Nombre = "BSC",
                 partidosGanados = 1,
                 partidosPerdidos = 8,
                 partidosEmpatados = 1
-            };
-            Equipos.Add(bsc);        
-        
-        }
+            }
+
+        };
 
         public bool ActualizarEquipo(Equipo equipo)
         {
