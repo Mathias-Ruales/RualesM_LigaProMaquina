@@ -11,6 +11,8 @@ namespace RualesM_LigaPro.Models
         [DisplayName ("Nombre del equipo: ")]
         [Required]
         public string Nombre { get; set; }
+        public string? Logo { get; set; }
+        public string? Descripcion { get; set; }
         [Range(0, 100)]
         [DisplayName("Partidos Jugados: ")]
         public int partidosJugados { get
